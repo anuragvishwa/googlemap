@@ -62,6 +62,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         getApplicationContext(),
                         "Place: " + place.getName(),
                         Toast.LENGTH_LONG).show();
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+                marker.setPosition(place.getLatLng());
+
             }
 
             @Override
@@ -74,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         autocompleteFragment.setHint("Search a Location");
 
         AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
+                .setCountry("IN")
                 .build();
         autocompleteFragment.setFilter(typeFilter);
 
