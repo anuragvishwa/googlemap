@@ -24,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -39,6 +40,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Marker marker;
+    private Marker fixedMarker;
 
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
@@ -74,6 +76,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 marker.setPosition(place.getLatLng());
 
+                fixedMarker=mMap.addMarker(new MarkerOptions().position(place.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.drawable.places_ic_search)));
+
+              //  fixedMarker.setPosition(place.getLatLng());
+
             }
 
             @Override
@@ -89,6 +95,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .setCountry("IN")
                 .build();
         autocompleteFragment.setFilter(typeFilter);
+
+        /*autocompleteFragment.setBoundsBias(new LatLngBounds(
+                new LatLng(13.069640, 77.478155),
+                new LatLng(12.854816, 77.769380)));
+
+                */
 
 
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
