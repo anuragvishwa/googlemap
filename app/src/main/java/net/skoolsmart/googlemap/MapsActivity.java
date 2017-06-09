@@ -19,6 +19,7 @@ import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,6 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Marker marker;
+
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
 
@@ -62,7 +64,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         getApplicationContext(),
                         "Place: " + place.getName(),
                         Toast.LENGTH_LONG).show();
+
+                CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+
+
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+
+                mMap.animateCamera(zoom,1000,null);
+
                 marker.setPosition(place.getLatLng());
 
             }
