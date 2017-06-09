@@ -3,4 +3,11 @@
     <string name="title_activity_maps">Map</string>
     <string name="editloc">Enter Location</string>
     <string name="update">Get LatLong</string>
+    <string name="action_search">Search Location</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search Places</string>
+    <string name="searchLoc">Search Location</string>
+    <string name="formatted_place_data">Formatted Place Dta</string>
 </resources>
