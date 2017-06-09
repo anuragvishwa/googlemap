@@ -6,6 +6,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,9 +35,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        LatLng sydney = new LatLng(12.910521, 77.599651);
         marker=mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setMyLocationEnabled(true);
+        mMap.setMinZoomPreference(10.0f);
         mMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
             @Override
             public void onCameraMove() {
@@ -46,6 +50,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 marker.setPosition(centerOfMap);
             }
         });
+
+
+
+
+
+
+    }
+
+    public void getLatLong(View view) {
+        LatLng position = marker.getPosition();
+        Toast.makeText(
+                this,
+                "Lat " + position.latitude + " "
+                        + "Long " + position.longitude,
+                Toast.LENGTH_LONG).show();
 
     }
 
